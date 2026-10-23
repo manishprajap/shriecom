@@ -1,0 +1,7 @@
+/* For information on how to create your own theme, please refer to:
+http://ionicframework.com/docs/theming/ */
+.h-root {
+    background: var(--bg);
+    min-height: 73vh;
+    padding-bottom: 0px  !important;
+}

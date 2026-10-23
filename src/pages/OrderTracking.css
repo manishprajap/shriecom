@@ -1,0 +1,696 @@
+/* ═══════════════════════════════════════════════
+   OrderTracking.css  —  Zomato / Blinkit style
+   ═══════════════════════════════════════════════ */
+
+/* ── Map ──────────────────────────────────────── */
+
+/* ── Status Row (old class kept for compat) ── */
+.ot-status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 14px 0;
+  gap: 10px;
+}
+
+.ot-status-row .ot-status-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 3px;
+}
+
+.ot-status-row .ot-status-sub {
+  font-size: 12.5px;
+  color: #6B7280;
+  margin: 0;
+}
+
+/* ── ETA Badge (map overlay) ── */
+.ot-eta-badge {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  border-radius: 20px;
+  padding: 6px 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  z-index: 500;
+  white-space: nowrap;
+}
+
+.ot-eta-icon { font-size: 15px; }
+.ot-eta-time { font-size: 14px; font-weight: 700; }
+.ot-eta-label { font-size: 11px; opacity: 0.8; }
+
+
+
+.ot-map-wrapper {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  background: #e8e0d8;
+  overflow: hidden;
+}
+
+.ot-map {
+  width: 100%;
+  height: 100%;
+}
+
+.ot-map-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 8px;
+  color: #9B8E84;
+  font-size: 13px;
+}
+
+/* ── ETA Pill ─────────────────────────────────── */
+.ot-eta-pill {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #fff;
+  border-radius: 20px;
+  padding: 6px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  z-index: 500;
+  white-space: nowrap;
+}
+
+.ot-eta-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4ADE80;
+  display: inline-block;
+  animation: etaPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes etaPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(1.4); }
+}
+
+/* ── Bottom Sheet ─────────────────────────────── */
+.ot-sheet {
+  background: #f5f5f5;
+  border-radius: 20px 20px 0 0;
+  margin-top: -16px;
+  padding: 0 0 32px;
+  position: relative;
+  z-index: 10;
+  min-height: calc(100vh - 220px);
+}
+
+.ot-sheet-handle {
+  width: 36px;
+  height: 4px;
+  background: #D1C8C0;
+  border-radius: 4px;
+  margin: 10px auto 0;
+}
+
+/* ── Status Banner ────────────────────────────── */
+.ot-status-banner {
+  background: #fff;
+  margin: 14px 14px 0;
+  border-radius: 14px;
+  padding: 14px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-left: 4px solid #F59E0B;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.07);
+}
+
+.ot-status-icon-wrap {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ot-status-icon {
+  font-size: 22px;
+  z-index: 1;
+  position: relative;
+}
+
+.ot-status-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 16px;
+  border: 2px solid transparent;
+  animation: ringPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes ringPulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50%       { opacity: 0.1; transform: scale(1.15); }
+}
+
+.ot-status-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.ot-status-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 3px;
+  line-height: 1.3;
+}
+
+.ot-status-sub {
+  font-size: 12.5px;
+  color: #6B7280;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.ot-call-fab {
+  --padding-start: 0;
+  --padding-end: 0;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+}
+
+/* ── Stepper ──────────────────────────────────── */
+.ot-stepper {
+  background: #fff;
+  margin: 10px 14px 0;
+  border-radius: 14px;
+  padding: 16px 10px 14px;
+  display: flex;
+  align-items: flex-start;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.07);
+}
+
+.ot-step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 0 0 auto;
+  width: 52px;
+}
+
+.ot-step-dot {
+  position: relative;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.dot-done {
+  background: #10B981;
+  border: 2.5px solid #10B981;
+}
+
+.dot-check {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.dot-active {
+  background: #fff;
+  border: 2.5px solid #E53935;
+  box-shadow: 0 0 0 4px rgba(229, 57, 53, 0.15);
+}
+
+.dot-pending {
+  background: #F3F4F6;
+  border: 2.5px solid #D1D5DB;
+}
+
+.dot-icon {
+  font-size: 16px;
+}
+
+/* Active dot pulse ring */
+.dot-pulse {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid #E53935;
+  animation: dotPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%   { opacity: 0.8; transform: scale(1); }
+  70%  { opacity: 0;   transform: scale(1.5); }
+  100% { opacity: 0;   transform: scale(1.5); }
+}
+
+.ot-step-label {
+  font-size: 9.5px;
+  text-align: center;
+  margin-top: 5px;
+  line-height: 1.2;
+  font-weight: 500;
+}
+
+.label-done    { color: #10B981; }
+.label-active  { color: #E53935; font-weight: 700; }
+.label-pending { color: #9CA3AF; }
+
+/* ── Step connector line ──────────────────────── */
+.ot-step-line {
+  flex: 1;
+  height: 3px;
+  background: #E5E7EB;
+  margin-top: 16px;
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.line-done {
+  background: #E5E7EB;
+}
+
+.line-fill {
+  position: absolute;
+  inset: 0;
+  background: #10B981;
+  border-radius: 2px;
+}
+
+/* ── Rider Card ───────────────────────────────── */
+.ot-rider-card {
+  background: #fff;
+  margin: 10px 14px 0;
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.07);
+}
+
+.ot-rider-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #E53935, #c62828);
+  color: #fff;
+  font-size: 19px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ot-rider-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.ot-rider-name {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 3px;
+}
+
+.ot-rider-meta {
+  font-size: 12px;
+  color: #6B7280;
+  margin: 0;
+}
+
+.ot-rider-btns {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.ot-icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1.5px solid #E5E7EB;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+  color: #4B5563;
+  transition: background 0.15s ease;
+}
+
+.ot-icon-btn:active { background: #F3F4F6; }
+
+.ot-icon-btn-call  { color: #10B981; border-color: #D1FAE5; }
+.ot-icon-btn-chat  { color: #3B82F6; border-color: #DBEAFE; }
+
+/* ── Order Items Card ─────────────────────────── */
+.ot-items-card {
+  background: #fff;
+  margin: 10px 14px 0;
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.07);
+}
+
+.ot-items-heading {
+  font-size: 13px;
+  font-weight: 700;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin: 0 0 10px;
+}
+
+.ot-item-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  border-bottom: 1px solid #F3F4F6;
+}
+
+.ot-item-row:last-of-type { border-bottom: none; }
+
+.ot-item-qty {
+  font-size: 13px;
+  font-weight: 700;
+  color: #E53935;
+  min-width: 22px;
+}
+
+.ot-item-name {
+  flex: 1;
+  font-size: 13.5px;
+  color: #374151;
+  font-weight: 500;
+}
+
+.ot-item-price {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.ot-items-loading {
+  font-size: 13px;
+  color: #9CA3AF;
+  text-align: center;
+  padding: 10px 0;
+  margin: 0;
+}
+
+.ot-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1.5px dashed #E5E7EB;
+}
+
+.ot-total-row span:first-child {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.ot-total-amount {
+  font-size: 16px;
+  font-weight: 800;
+  color: #E53935;
+}
+
+/* ── Loading Screen ───────────────────────────── */
+.ot-loading-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  gap: 12px;
+}
+
+.ot-loading-icon {
+  font-size: 52px;
+  animation: scooterBounce 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes scooterBounce {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-10px); }
+}
+
+.ot-loading-text {
+  font-size: 15px;
+  color: #6B7280;
+  font-weight: 500;
+  margin: 0;
+}
+
+.ot-loading-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.ot-loading-dots span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #E53935;
+  animation: dotBounce 1.2s ease-in-out infinite;
+}
+
+.ot-loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+.ot-loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes dotBounce {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40%            { transform: scale(1);   opacity: 1; }
+}
+
+
+
+.ot-order-card {
+  margin: 16px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+.ot-order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.ot-order-header h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: #222;
+}
+
+.ot-order-header span {
+  background: #fff3e0;
+  color: #ff6b00;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.ot-order-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+}
+
+.ot-order-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ot-qty-badge {
+  background: #ffe8d5;
+  color: #ff6b00;
+  min-width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.ot-order-item {
+  font-size: 15px;
+  font-weight: 500;
+  color: #222;
+}
+
+.ot-order-price {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111;
+}
+
+.ot-divider {
+  height: 1px;
+  background: #ececec;
+  margin: 10px 0;
+}
+
+.ot-order-total {
+  padding-top: 14px;
+}
+
+.ot-order-total span:first-child {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.ot-total-val {
+  font-size: 22px;
+  font-weight: 800;
+  color: #e53935;
+}
+
+.ot-empty-order {
+  text-align: center;
+  color: #999;
+  padding: 20px;
+  font-size: 14px;
+}
+
+.ot-rider-card {
+  margin: 16px;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.ot-rider-content {
+  padding: 18px;
+}
+
+.ot-rider-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ot-rider-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.ot-avatar {
+  width: 65px;
+  height: 65px;
+}
+
+.ot-avatar-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    #ff6b35,
+    #ff8f00
+  );
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.ot-rider-name {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: #222;
+}
+
+.ot-rider-meta {
+  margin: 4px 0;
+  color: #666;
+  font-size: 13px;
+}
+
+.ot-online-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: #dcfce7;
+  color: #16a34a;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.ot-rider-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.ot-call-btn,
+.ot-chat-btn {
+  --padding-start: 12px;
+  --padding-end: 12px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.ot-call-btn {
+  --background: #dcfce7;
+  --color: #16a34a;
+}
+
+.ot-chat-btn {
+  --background: #dbeafe;
+  --color: #2563eb;
+}

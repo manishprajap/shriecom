@@ -1,0 +1,587 @@
+/* ═══════════════════════════════════════════════════
+   global.css  —  FoodDeliver · Single source of truth
+   Import this ONCE in your app entry (e.g. index.tsx)
+   ═══════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap');
+
+/* ─── Design Tokens ─── */
+:root {
+  /* Font */
+  --font-primary:   'Open Sans', sans-serif;
+  --font-serif:     'Playfair Display', serif;
+
+  /* Brand palette */
+  --cream:          #FAF6F0;
+  --bg:             #FFFBEB;
+  --charcoal:       #1A1714;
+  --warm-brown:     #78350F;
+  --amber:          #E07B00;
+  --amber-mid:      #D97706;
+  --amber-light:    #F59E0B;
+  --amber-pale:     #FEF3C7;
+  --amber-border:   #FDE68A;
+
+  /* Surfaces & borders */
+  --surface:        #FFFFFF;
+  --border:         #EAE5DF;
+  --border-warm:    #E7E0D8;
+  --muted:          #9B8E84;
+  --muted-light:    #A8A29E;
+  --placeholder:    #C4B8AE;
+
+  /* Status */
+  --green:          #16A34A;
+  --green-dark:     #0C831F;
+  --green-pale:     #DCFCE7;
+  --red:            #DC2626;
+  --red-pale:       #FEF2F2;
+  --red-border:     #FECACA;
+
+  /* Shadows */
+  --shadow-card:    0 32px 80px rgba(28, 25, 23, 0.15);
+  --shadow-float:   0 8px 32px rgba(26, 23, 20, 0.35);
+
+  /* Radii */
+  --radius-sm:      8px;
+  --radius-md:      12px;
+  --radius-lg:      16px;
+  --radius-xl:      20px;
+  --radius-2xl:     28px;
+}
+
+/* ─── Reset ─── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin:     0;
+  padding:    0;
+}
+
+
+
+/* ─── Base typography ─── */
+body,
+ion-app,
+ion-content,
+ion-page,
+.ion-page {
+  font-family: var(--font-primary) !important;
+}
+
+/* Every IonInput, IonTextarea, IonLabel inherits the same font */
+ion-input,
+ion-textarea,
+ion-label,
+ion-item,
+ion-select,
+ion-button {
+  font-family: var(--font-primary) !important;
+}
+
+/* ─── Ionic content background ─── */
+ion-content {
+  --background: var(--bg);
+}
+
+/* ─── Scrollbar hide (webkit + firefox) ─── */
+.scroll-x {
+  display:                  flex;
+  overflow-x:               auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width:          none;
+}
+.scroll-x::-webkit-scrollbar { display: none; }
+
+/* ─── Shimmer skeleton ─── */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #f0e8c0 25%,
+    #fef9e7 50%,
+    #f0e8c0 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: var(--radius-lg);
+}
+@keyframes shimmer {
+  0%   { background-position:  200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ─── Qty stepper (shared by Home, Category, Product pages) ─── */
+.qty-box {
+  display:         flex;
+  align-items:     center;
+  gap:             6px;
+  background:      var(--amber);
+  border-radius:   var(--radius-sm);
+  padding:         4px 6px;
+}
+.qty-box button {
+  background:  none;
+  border:      none;
+  color:       #fff;
+  font-family: var(--font-primary);
+  font-size:   16px;
+  font-weight: 700;
+  cursor:      pointer;
+  width:       20px;
+  height:      20px;
+  display:     flex;
+  align-items: center;
+  justify-content: center;
+  padding:     0;
+}
+.qty-box span {
+  color:       #fff;
+  font-size:   13px;
+  font-weight: 700;
+  min-width:   16px;
+  text-align:  center;
+}
+
+/* Green variant used on Product Detail page */
+.qty-box--green {
+  background: var(--green-dark);
+}
+
+/* ─── ADD button (outlined amber) ─── */
+.btn-add {
+  background:    #fff;
+  border:        1.5px solid var(--amber);
+  color:         var(--amber);
+  border-radius: var(--radius-sm);
+  padding:       5px 14px;
+  font-family:   var(--font-primary);
+  font-size:     12px;
+  font-weight:   700;
+  cursor:        pointer;
+  letter-spacing: 0.04em;
+  transition:    all 0.18s;
+}
+.btn-add:active {
+  background: var(--amber);
+  color:      #fff;
+}
+
+/* Green outlined ADD (Category / Product pages) */
+.btn-add--green {
+  border-color: var(--green);
+  color:        var(--green);
+}
+.btn-add--green:active {
+  background: var(--green);
+  color:      #fff;
+}
+
+/* ─── Primary CTA button (amber gradient) ─── */
+.btn-primary {
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  width:           100%;
+  height:          52px;
+  background:      linear-gradient(135deg, #D97706, #B45309);
+  color:           #fff;
+  border:          none;
+  border-radius:   var(--radius-md);
+  font-family:     var(--font-primary);
+  font-size:       15px;
+  font-weight:     500;
+  letter-spacing:  0.02em;
+  cursor:          pointer;
+  box-shadow:      0 8px 24px rgba(180, 83, 9, 0.35);
+  transition:      transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-primary:hover:not(:disabled) { transform: translateY(-2px); }
+.btn-primary:active                { transform: translateY(0); }
+.btn-primary:disabled              { opacity: 0.7; cursor: not-allowed; }
+
+/* ─── Sticky app header ─── */
+.app-header {
+  position:         sticky;
+  top:              0;
+  z-index:          100;
+  background:       #f8cb46;
+  border-bottom:    1px solid #F0E8C0;
+  padding:          12px 16px;
+  display:          flex;
+  align-items:      center;
+  justify-content:  space-between;
+  gap:              12px;
+}
+.app-header__back {
+  width:           36px;
+  height:          36px;
+  border-radius:   var(--radius-sm);
+  background:      rgba(0, 0, 0, 0.85);
+  border:          none;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  cursor:          pointer;
+  flex-shrink:     0;
+  transition:      background 0.2s;
+}
+.app-header__back:active { background: rgba(0, 0, 0, 0.95); }
+.app-header__back ion-icon { color: #fff; font-size: 18px; }
+
+.app-header__title h3 {
+  font-family: var(--font-primary);
+  font-size:   15px;
+  font-weight: 700;
+  color:       #000;
+  line-height: 1;
+}
+.app-header__title p {
+  font-size:   11px;
+  color:       #333;
+  margin-top:  2px;
+}
+
+.app-header__icon-btn {
+  width:           36px;
+  height:          36px;
+  border-radius:   var(--radius-sm);
+  background:      #000;
+  border:          none;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  cursor:          pointer;
+  position:        relative;
+}
+.app-header__icon-btn ion-icon { color: #fff; font-size: 18px; }
+
+.cart-badge {
+  position:    absolute;
+  top:         -5px;
+  right:       -5px;
+  width:       18px;
+  height:      18px;
+  border-radius: 50%;
+  background:  var(--amber-light);
+  color:       var(--charcoal);
+  font-size:   10px;
+  font-weight: 700;
+  display:     flex;
+  align-items: center;
+  justify-content: center;
+  border:      2px solid #000;
+}
+
+/* ─── Section header ─── */
+.section-header {
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+  padding:         0 16px;
+  margin-bottom:   12px;
+}
+.section-header__left {
+  display:    flex;
+  align-items: center;
+  gap:         8px;
+}
+.section-header__icon  { font-size: 20px; }
+.section-header__title {
+  font-family: var(--font-primary);
+  font-size:   17px;
+  font-weight: 800;
+  color:       var(--charcoal);
+}
+.section-header__subtitle {
+  font-size:  11px;
+  color:      var(--muted);
+  margin-top: 1px;
+}
+.section-header__action {
+  font-size:   12px;
+  font-weight: 600;
+  color:       var(--amber);
+  cursor:      pointer;
+}
+
+/* ─── Floating cart bar ─── */
+.cart-bar {
+  position:     fixed;
+  bottom:       16px;
+  left:         50%;
+  transform:    translateX(-50%);
+  width:        calc(100% - 32px);
+  max-width:    420px;
+  background:   var(--charcoal);
+  border-radius: var(--radius-lg);
+  padding:      14px 18px;
+  display:      flex;
+  align-items:  center;
+  justify-content: space-between;
+  box-shadow:   var(--shadow-float);
+  z-index:      200;
+  animation:    cartSlideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes cartSlideUp {
+  from { transform: translateX(-50%) translateY(20px); opacity: 0; }
+  to   { transform: translateX(-50%) translateY(0);    opacity: 1; }
+}
+.cart-bar__count {
+  background:      var(--amber-light);
+  color:           var(--charcoal);
+  width:           28px;
+  height:          28px;
+  border-radius:   var(--radius-sm);
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  font-size:       13px;
+  font-weight:     700;
+}
+.cart-bar__label       { font-size: 13px; color: rgba(255,255,255,0.7); }
+.cart-bar__label strong { color: #fff; }
+.cart-bar__btn {
+  background:     var(--amber);
+  color:          #fff;
+  border:         none;
+  padding:        9px 16px;
+  border-radius:  var(--radius-sm);
+  font-family:    var(--font-primary);
+  font-size:      13px;
+  font-weight:    600;
+  cursor:         pointer;
+  transition:     background 0.18s;
+}
+.cart-bar__btn:active { background: #B45309; }
+
+/* ─── Input field wrapper ─── */
+.field-label {
+  display:        block;
+  font-size:      11px;
+  font-weight:    500;
+  color:          var(--muted-light);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom:  6px;
+}
+.input-box {
+  border:        1.5px solid var(--border-warm);
+  border-radius: var(--radius-md);
+  background:    var(--cream);
+  transition:    all 0.25s ease;
+  overflow:      hidden;
+  display:       flex;
+  align-items:   center;
+}
+.input-box.focused {
+  border-color: var(--amber-mid);
+  background:   #FFFBF4;
+  box-shadow:   0 0 0 3px rgba(217, 119, 6, 0.10);
+}
+.input-box ion-input {
+  --padding-start:    16px;
+  --padding-end:      16px;
+  --padding-top:      14px;
+  --padding-bottom:   14px;
+  --color:            var(--charcoal);
+  --placeholder-color: var(--placeholder);
+  --background:       transparent;
+  font-size:          15px;
+  font-family:        var(--font-primary) !important;
+  flex:               1;
+}
+
+/* ─── Error banner ─── */
+.error-banner {
+  background:    var(--red-pale);
+  border:        1px solid var(--red-border);
+  border-radius: var(--radius-md);
+  padding:       10px 14px;
+  margin-bottom: 16px;
+  font-size:     13px;
+  color:         var(--red);
+  display:       flex;
+  align-items:   center;
+  gap:           8px;
+  animation:     errorIn 0.25s ease both;
+}
+@keyframes errorIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.error-banner__dot {
+  width:        6px;
+  height:       6px;
+  border-radius: 50%;
+  background:   var(--red);
+  flex-shrink:  0;
+}
+
+/* ─── Spinner ─── */
+.spinner {
+  display:       inline-block;
+  width:         16px;
+  height:        16px;
+  border:        2px solid rgba(255,255,255,0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation:     spin 0.7s linear infinite;
+  margin-right:  8px;
+  vertical-align: middle;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ─── Brand tag pill ─── */
+.brand-tag {
+  display:        inline-flex;
+  align-items:    center;
+  gap:            6px;
+  background:     var(--amber-pale);
+  border:         1px solid var(--amber-border);
+  border-radius:  20px;
+  padding:        4px 12px;
+  font-size:      11px;
+  font-weight:    500;
+  color:          var(--warm-brown);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top:     12px;
+}
+.brand-tag__dot {
+  width:         6px;
+  height:        6px;
+  border-radius: 50%;
+  background:    var(--amber-mid);
+}
+
+/* ─── Divider with label ─── */
+.divider {
+  display:        flex;
+  align-items:    center;
+  gap:            12px;
+  margin-bottom:  22px;
+}
+.divider__line {
+  flex:       1;
+  height:     1px;
+  background: var(--border-warm);
+}
+.divider__text {
+  font-size:      11px;
+  color:          var(--muted-light);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ─── Modal card ─── */
+.modal-card {
+  background:    var(--surface);
+  border-radius: var(--radius-2xl);
+  box-shadow:    var(--shadow-card), 0 0 0 1px rgba(231, 224, 216, 0.8);
+  padding:       40px 36px;
+  width:         100%;
+  max-width:     420px;
+  position:      relative;
+  animation:     cardIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(32px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+
+/* ─── Back button (circular, used in modals) ─── */
+.back-circle {
+  position:        absolute;
+  top:             20px;
+  left:            20px;
+  width:           38px;
+  height:          38px;
+  border-radius:   50%;
+  background:      var(--cream);
+  border:          1px solid var(--border-warm);
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  cursor:          pointer;
+  color:           var(--charcoal);
+  transition:      all 0.2s ease;
+}
+.back-circle:hover {
+  background:   var(--charcoal);
+  color:        #fff;
+  border-color: var(--charcoal);
+  transform:    scale(1.08);
+}
+.back-circle ion-icon { font-size: 18px; }
+
+/* ─── Logo ring (used in auth modals) ─── */
+.logo-ring {
+  width:         72px;
+  height:        72px;
+  border-radius: 20px;
+  background:    linear-gradient(135deg, var(--amber-light), var(--amber-mid));
+  display:       flex;
+  align-items:   center;
+  justify-content: center;
+  box-shadow:    0 8px 24px rgba(217, 119, 6, 0.3);
+}
+.logo-ring img {
+  width:        46px;
+  height:       46px;
+  object-fit:   contain;
+}
+
+/* ─── Decorative animated blobs ─── */
+.blob {
+  position:       absolute;
+  border-radius:  50%;
+  filter:         blur(80px);
+  pointer-events: none;
+}
+.blob--amber {
+  width:      320px;
+  height:     320px;
+  background: radial-gradient(circle, rgba(217,119,6,0.15) 0%, transparent 70%);
+  top:        -80px;
+  right:      -80px;
+  animation:  blobFloat 8s ease-in-out infinite;
+}
+.blob--brown {
+  width:      240px;
+  height:     240px;
+  background: radial-gradient(circle, rgba(120,53,15,0.10) 0%, transparent 70%);
+  bottom:     -60px;
+  left:       -60px;
+  animation:  blobFloat 10s ease-in-out infinite reverse;
+}
+@keyframes blobFloat {
+  0%, 100% { transform: translateY(0)     scale(1); }
+  50%      { transform: translateY(-20px) scale(1.05); }
+}
+
+/* ─── Terms text ─── */
+.terms-text {
+  font-size:   11px;
+  color:       var(--placeholder);
+  text-align:  center;
+  margin-top:  20px;
+  line-height: 1.6;
+}
+.terms-text span {
+  color:           var(--muted-light);
+  text-decoration: underline;
+  cursor:          pointer;
+}
+
+/* ─── Utility helpers ─── */
+.text-amber   { color: var(--amber); }
+.text-muted   { color: var(--muted); }
+.text-charcoal{ color: var(--charcoal); }
+.fw-700       { font-weight: 700; }
+.fw-600       { font-weight: 600; }
+.fw-500       { font-weight: 500; }
+.fs-11        { font-size: 11px; }
+.fs-12        { font-size: 12px; }
+.fs-13        { font-size: 13px; }
+.fs-14        { font-size: 14px; }
+.fs-15        { font-size: 15px; }
+.mt-auto      { margin-top: auto; }
